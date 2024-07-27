@@ -1,0 +1,64 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/pro
+    http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd
+    ">
+
+    <changeSet id="v1-1" author="Maxim Yarmol">
+        <createTable tableName="participant_info_type">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name_p" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="reg_n" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="cntr_cd" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="rgn" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="idn" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="tnp" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="nnp" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="adr" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="date_in" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+            <column name="pt_type" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="srvcs" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="xch_type" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="uid" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="participant_status" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

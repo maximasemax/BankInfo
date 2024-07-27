@@ -1,0 +1,48 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+    http://www.liquibase.org/xml/ns/pro
+    http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd
+    ">
+
+    <changeSet id="v1-1" author="Maxim Yarmol">
+        <createTable tableName="account_type">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="bic_directory_entry_type_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="account" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="regulation_account_type" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="ck" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="account_cbrbic" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="account_status" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="date_in" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="account_type"
+                                 baseColumnNames="bic_directory_entry_type_id"
+                                 referencedTableName="bic_directory_entry_type"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_bic_directory_entry_type_account"/>
+    </changeSet>
+</databaseChangeLog>
