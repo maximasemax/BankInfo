@@ -8,7 +8,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,7 +25,6 @@ public class XmlParser {
         JAXBContext jaxbContext = JAXBContext.newInstance(ED807.class);
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
-        // Убедитесь, что InputStream использует правильную кодировку
         InputStreamReader reader = new InputStreamReader(inputStream, "Windows-1251");
         JAXBElement<ED807> root = unmarshaller.unmarshal(new StreamSource(reader), ED807.class);
         return root.getValue();
