@@ -2,6 +2,7 @@ package com.example.bankInfo.controller;
 
 
 import com.example.bankInfo.converter.FileConverter;
+import com.example.bankInfo.exception.CustomEd807Exception;
 import com.example.bankInfo.parser.XmlParser;
 import com.example.bankInfo.service.Ed807Service;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,19 +30,17 @@ public class Ed807ControllerImpl {
     private final Ed807Service ed807Service;
     private final XmlParser xmlParser;
 
-    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/file", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(description = "Загрузка файла xml")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Файл успешно загружен и обработан"),
-            @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера")})
-    public ResponseEntity<Object> createXmlBic(@RequestPart("file") MultipartFile file) throws IOException {
+            @ApiResponse(responseCode = "201", description = "Файл успешно загружен и обработан")})
+    public ResponseEntity<Object> createXmlBic(@RequestPart("file") MultipartFile file) throws CustomEd807Exception {
         try {
             ED807 ed807 = xmlParser.parseXml(file);
             ed807Service.createEd807(ed807);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (IOException | JAXBException e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            throw new CustomEd807Exception("Внутренняя ошибка сервера");
         }
     }
 
