@@ -38,6 +38,11 @@ public class Ed807Service {
     private final Ed807Converter ed807Converter;
 
 
+    /**
+     * Метод для разбора входного {@link ED807} в набор сущностей для последующего сохранения в БД.
+     * @param ed807RequestDto входное DTO.
+     * @return DTO ответа {@link ED807}.
+     */
     public ED807 createEd807(ED807 ed807RequestDto) {
         Ed807Entity ed807Entity = ed807Converter.ed807DtoToEntity(ed807RequestDto);
         ed807Entity.setEdAuthor(ed807RequestDto.getEDAuthor());

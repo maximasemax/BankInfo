@@ -8,6 +8,13 @@ import java.io.*;
 @Component
 public class FileConverter {
 
+
+    /**
+     *
+     * @param multipartFile
+     * @return
+     * @throws IOException
+     */
     public File convertMultipartFileToFile(MultipartFile multipartFile) throws IOException {
         File file = new File(System.getProperty("java.io.tmpdir") + "/" + multipartFile.getOriginalFilename());
         try (InputStream inputStream = multipartFile.getInputStream();
